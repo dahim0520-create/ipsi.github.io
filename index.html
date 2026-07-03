@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>입시부장관 — 중위권 전문 입시 컨설팅</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a1410">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#1a1410; --ink-muted:#6b5e52; --ink-faint:#b8a99a;
+  --paper:#faf8f5; --paper-warm:#f2ede6; --card:#fff;
+  --accent:#8b2e00; --accent-light:#c44a10; --accent-bg:#fff3ee;
+  --gold:#b8860b; --success:#2e6b3e; --success-bg:#eaf4ee;
+  --border:#ddd5c8; --border-strong:#c4b8aa;
+  --radius:12px; --radius-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* ── HEADER ── */
+.site-header{background:var(--ink);color:#fff;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,.015) 20px,rgba(255,255,255,.015) 40px);}
+.header-inner{max-width:900px;margin:0 auto;padding:2.5rem 2rem 2rem;position:relative;}
+.brand-badge{display:inline-block;font-family:'Noto Serif KR',serif;font-size:11px;font-weight:600;letter-spacing:.15em;color:var(--gold);border:1px solid var(--gold);padding:4px 12px;margin-bottom:1rem;border-radius:2px;}
+.site-header h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.6rem;}
+.header-rule{width:40px;height:2px;background:var(--accent-light);margin:1rem 0;}
+.header-desc{font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.7;max-width:520px;font-weight:300;}
+.header-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);margin-top:.8rem;}
+
+/* ── HOME SCREEN (3 buttons) ── */
+#screen-home{display:block;}
+#screen-process,#screen-faq,#screen-booking{display:none;}
+.home-main{max-width:560px;margin:0 auto;padding:3rem 2rem 5rem;}
+.home-btns{display:flex;flex-direction:column;gap:14px;margin-top:2.5rem;}
+.home-btn{display:flex;align-items:center;gap:16px;background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.6rem;cursor:pointer;transition:all .2s;text-align:left;width:100%;}
+.home-btn:hover{border-color:var(--accent-light);box-shadow:0 4px 20px rgba(196,74,16,.1);transform:translateY(-1px);}
+.home-btn-icon{width:44px;height:44px;border-radius:10px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.home-btn-text h3{font-family:'Noto Serif KR',serif;font-size:1rem;font-weight:700;margin-bottom:3px;color:var(--ink);}
+.home-btn-text p{font-size:12px;color:var(--ink-faint);line-height:1.5;}
+.home-btn.primary{background:var(--ink);border-color:var(--ink);}
+.home-btn.primary .home-btn-text h3{color:#fff;}
+.home-btn.primary .home-btn-text p{color:rgba(255,255,255,.5);}
+.home-btn.primary .home-btn-icon{background:rgba(255,255,255,.1);}
+.home-intro{background:var(--paper-warm);border-radius:var(--radius);padding:1.4rem 1.6rem;margin-bottom:2rem;border:1px solid var(--border);}
+.home-intro p{font-size:13px;color:var(--ink-muted);line-height:1.8;}
+
+/* ── BACK BUTTON ── */
+.back-bar{max-width:900px;margin:0 auto;padding:1.2rem 2rem .5rem;}
+.btn-back{background:none;border:none;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--ink-muted);cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;}
+.btn-back:hover{color:var(--ink);}
+
+/* ── PROCESS PAGE ── */
+.process-main{max-width:700px;margin:0 auto;padding:1rem 2rem 4rem;}
+.process-title{font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;margin-bottom:.5rem;}
+.process-sub{font-size:13px;color:var(--ink-muted);margin-bottom:2.5rem;line-height:1.6;}
+.step-list{display:flex;flex-direction:column;gap:0;}
+.step-item{display:flex;gap:0;position:relative;}
+.step-line{display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;}
+.step-dot{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-family:'Noto Serif KR',serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;}
+.step-connector{width:2px;flex:1;background:var(--border);min-height:24px;}
+.step-item:last-child .step-connector{display:none;}
+.step-body{padding:.3rem 0 2rem 1rem;flex:1;}
+.step-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-light);margin-bottom:4px;}
+.step-body h3{font-family:'Noto Serif KR',serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.step-body p{font-size:13px;color:var(--ink-muted);line-height:1.8;}
+.step-body .step-note{margin-top:.6rem;font-size:12px;background:var(--paper-warm);border-radius:6px;padding:8px 12px;color:var(--ink-muted);line-height:1.7;}
+.step-body a{color:var(--accent-light);text-decoration:none;}
+
+/* ── FAQ PAGE ── */
+.faq-main{max-width:700px;margin:0 auto;padding:1rem 2rem 4rem;}
+.faq-title{font-family:'Noto Serif KR',serif;font-size:1.5rem;font-weight:700;margin-bottom:.5rem;}
+.faq-sub{font-size:13px;color:var(--ink-muted);margin-bottom:2rem;}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden;}
+.faq-q{padding:1rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);transition:background .15s;}
+.faq-q:hover{background:var(--paper-warm);}
+.faq-q-text{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.5;}
+.faq-q-text::before{content:'Q. ';color:var(--accent-light);}
+.faq-arrow{font-size:14px;color:var(--ink-faint);transition:transform .25s;flex-shrink:0;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{display:none;padding:1rem 1.2rem;background:var(--paper-warm);border-top:1px solid var(--border);font-size:13px;color:var(--ink-muted);line-height:1.8;}
+.faq-a::before{content:'A. ';font-weight:700;color:var(--success);}
+.faq-item.open .faq-a{display:block;}
+
+/* ── NOTICE / NOTIF BARS ── */
+.notice-bar{background:var(--accent-bg);border-bottom:1px solid #f5c9b4;padding:10px 2rem;}
+.notice-bar-inner{max-width:900px;margin:0 auto;font-size:12.5px;color:var(--accent);display:flex;align-items:center;gap:8px;}
+.notif-banner{background:#fff8e6;border-bottom:1px solid #f0d87a;padding:10px 2rem;display:none;}
+.notif-banner.show{display:block;}
+.notif-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.notif-banner-text{font-size:12.5px;color:#7a5c00;display:flex;align-items:center;gap:6px;}
+.notif-banner-actions{display:flex;gap:8px;}
+.btn-allow-notif{font-size:12px;font-weight:700;background:var(--gold);color:#fff;border:none;padding:5px 14px;border-radius:20px;cursor:pointer;}
+.btn-dismiss-notif{font-size:12px;background:transparent;color:#a08030;border:1px solid #d4b94a;padding:5px 12px;border-radius:20px;cursor:pointer;}
+
+/* ── ADMIN ── */
+.admin-toggle{display:flex;justify-content:flex-end;margin-bottom:1.5rem;}
+.btn-admin{font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:500;color:var(--ink-muted);background:transparent;border:1px solid var(--border);padding:6px 16px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;}
+.btn-admin:hover{background:var(--paper-warm);}
+.admin-panel{background:var(--ink);color:#fff;border-radius:var(--radius);padding:2rem;margin-bottom:2rem;display:none;}
+.admin-panel.visible{display:block;}
+.admin-panel h2{font-family:'Noto Serif KR',serif;font-size:1.1rem;font-weight:600;margin-bottom:1.5rem;color:var(--gold);}
+.admin-tabs{display:flex;gap:8px;margin-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:1rem;}
+.admin-tab{font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;cursor:pointer;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;transition:all .2s;}
+.admin-tab.active{background:var(--accent-light);border-color:var(--accent-light);color:#fff;}
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem;}
+.admin-field label{display:block;font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase;}
+.admin-field input,.admin-field select{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:13px;padding:8px 12px;border-radius:var(--radius-sm);outline:none;transition:border-color .2s;}
+.admin-field input:focus,.admin-field select:focus{border-color:var(--accent-light);}
+.admin-field select option{background:#1a1410;}
+.btn-add-slot{font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:500;background:var(--accent-light);color:#fff;border:none;padding:9px 20px;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s;}
+.btn-add-slot:hover{background:var(--accent);}
+.admin-slots-list{margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;}
+.admin-slots-list h3{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1rem;}
+.admin-slot-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;color:rgba(255,255,255,.8);}
+.admin-slot-booked{border-left:2px solid #f5a07a;padding-left:10px;transition:background .15s;}
+.admin-slot-booked:hover{background:rgba(245,160,122,.08);}
+.btn-remove{background:none;border:none;color:rgba(255,80,50,.6);cursor:pointer;font-size:18px;line-height:1;padding:0 4px;transition:color .2s;flex-shrink:0;}
+.btn-remove:hover{color:#ff5032;}
+
+/* ── MONTH NAV ── */
+.booking-main{max-width:900px;margin:0 auto;padding:1rem 2rem 4rem;}
+.month-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
+.month-title{font-family:'Noto Serif KR',serif;font-size:1.4rem;font-weight:700;letter-spacing:-.01em;}
+.btn-nav{background:transparent;border:1px solid var(--border);color:var(--ink-muted);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.btn-nav:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* ── CALENDAR ── */
+.calendar-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:2rem;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);background:var(--paper-warm);border-bottom:1px solid var(--border);}
+.cal-weekday{text-align:center;padding:10px 0;font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-muted);}
+.cal-weekday:first-child{color:#c0392b;}
+.cal-weekday:last-child{color:#2980b9;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}
+.cal-cell{min-height:72px;border-right:.5px solid var(--border);border-bottom:.5px solid var(--border);padding:6px 5px;position:relative;}
+.cal-cell:nth-child(7n){border-right:none;}
+.cal-cell.empty{background:var(--paper);}
+.cal-cell.past{background:var(--paper);opacity:.5;}
+.cal-cell.today .day-num{background:var(--ink);color:#fff;border-radius:50%;}
+.cal-cell.sunday .day-num{color:#c0392b;}
+.cal-cell.saturday .day-num{color:#2980b9;}
+.day-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;font-size:12px;font-weight:500;border-radius:50%;margin-bottom:3px;}
+.slot-chips{display:flex;flex-direction:column;gap:2px;}
+/* 고정폭 칩 — 좌우 균등 */
+.slot-chip{font-size:10px;padding:2px 0;border-radius:3px;font-weight:600;text-align:center;display:block;width:100%;}
+.slot-chip.available{background:var(--accent-bg);color:var(--accent);border:1px solid #f5c9b4;cursor:pointer;transition:all .15s;}
+.slot-chip.available:hover{background:var(--accent-light);color:#fff;border-color:var(--accent-light);}
+/* 마감: 텍스트에 취소선, 배경 회색 */
+.slot-chip.booked{background:#f0ebe4;color:#c0a898;border:1px solid var(--border);cursor:not-allowed;pointer-events:none;text-decoration:line-through;}
+
+/* ── LEGEND ── */
+.legend{display:flex;gap:20px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted);}
+.legend-dot{width:10px;height:10px;border-radius:2px;}
+.legend-dot.available{background:var(--accent-light);}
+.legend-dot.booked{background:var(--border);}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(20,15,10,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(2px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border-radius:var(--radius);padding:2.5rem;max-width:480px;width:100%;position:relative;animation:modal-in .25s ease;max-height:90vh;overflow-y:auto;}
+@keyframes modal-in{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;color:var(--ink-faint);cursor:pointer;line-height:1;transition:color .2s;}
+.modal-close:hover{color:var(--ink);}
+.modal-tag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-light);margin-bottom:8px;}
+.modal h2{font-family:'Noto Serif KR',serif;font-size:1.4rem;font-weight:700;margin-bottom:.4rem;line-height:1.3;letter-spacing:-.01em;}
+.modal-time{font-size:13px;color:var(--ink-muted);margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.form-field{margin-bottom:1.2rem;}
+.form-field label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:7px;}
+.form-field input,.form-field textarea,.form-field select{width:100%;font-family:'Noto Sans KR',sans-serif;font-size:14px;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--paper);color:var(--ink);outline:none;transition:border-color .2s;}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent-light);background:#fff;}
+.form-field textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.btn-book{width:100%;background:var(--ink);color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:13px;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:background .2s;margin-top:1rem;}
+.btn-book:hover{background:var(--accent);}
+
+/* ── SUCCESS ── */
+.success-view{text-align:center;padding:1rem 0;}
+.success-icon{width:56px;height:56px;background:var(--success-bg);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1.2rem;}
+.success-view h3{font-family:'Noto Serif KR',serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}
+.success-view p{font-size:13.5px;color:var(--ink-muted);line-height:1.7;margin-bottom:.4rem;}
+.success-detail{background:var(--paper-warm);border-radius:var(--radius-sm);padding:1rem 1.2rem;margin:1.2rem 0;text-align:left;font-size:13px;color:var(--ink-muted);line-height:1.8;}
+.success-detail strong{color:var(--ink);font-weight:700;}
+.copy-box{background:#fff8e0;border:1px solid #fcd34d;border-radius:8px;padding:12px 14px;margin:.8rem 0;font-size:13px;color:#92400e;line-height:1.6;text-align:left;}
+.copy-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;}
+.copy-val{font-weight:700;font-size:14px;color:#7c3a00;letter-spacing:.04em;}
+.btn-copy{font-size:11px;font-weight:700;background:#f59e0b;color:#fff;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;white-space:nowrap;transition:background .2s;}
+.btn-copy:hover{background:#d97706;}
+.btn-copy.copied{background:#2e6b3e;}
+
+/* ── BOOKINGS LIST ── */
+.section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1rem;}
+.booking-cards{display:grid;gap:10px;}
+.booking-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;}
+.booking-card-date{text-align:center;min-width:48px;}
+.bc-month{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-light);}
+.bc-day{font-family:'Noto Serif KR',serif;font-size:1.6rem;font-weight:700;line-height:1;color:var(--ink);}
+.booking-card-info{flex:1;}
+.bc-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.bc-time{font-size:12.5px;color:var(--ink-muted);}
+.booking-status{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.03em;white-space:nowrap;}
+.booking-status.confirmed{background:var(--success-bg);color:var(--success);}
+.booking-status.pending{background:#fff8e0;color:#d97706;border:1px solid #fcd34d;}
+
+/* ── FOOTER ── */
+.site-footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:11.5px;color:var(--ink-faint);letter-spacing:.04em;}
+
+/* ── SURVEY BOX ── */
+.survey-tabs{display:flex;gap:8px;margin:1rem 0;}
+.survey-tab{font-size:12px;font-weight:700;padding:5px 16px;border-radius:20px;cursor:pointer;border:1.5px solid var(--border);color:var(--ink-muted);background:transparent;transition:all .2s;}
+.survey-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.survey-panel{display:none;background:var(--paper-warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.2rem 1.4rem;margin-bottom:.5rem;}
+.survey-panel.active{display:block;}
+.survey-panel ol{padding-left:1.2rem;font-size:13px;color:var(--ink-muted);line-height:2;}
+.survey-panel ol li{margin-bottom:.2rem;}
+.survey-panel ul{padding-left:1rem;margin:.2rem 0 .4rem;font-size:12.5px;color:var(--ink-faint);line-height:1.8;list-style:disc;}
+.survey-note{margin-top:.8rem;font-size:12.5px;color:var(--accent);font-weight:500;line-height:1.7;}
+/* Step1 price cards */
+.price-cards{display:flex;gap:10px;margin-top:.8rem;flex-wrap:wrap;}
+.price-card{flex:1;min-width:140px;border-radius:var(--radius-sm);padding:.9rem 1rem;border:1.5px solid var(--border);}
+.price-card.susi{background:#fff8f5;border-color:#f5c9b4;}
+.price-card.jeongsi{background:#f5f8ff;border-color:#c5d4f5;}
+.price-card .pc-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px;}
+.price-card .pc-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.price-card .pc-price{font-size:1.2rem;font-weight:700;color:var(--accent-light);}
+.price-card .pc-time{font-size:12px;color:var(--ink-faint);}
+
+@media(max-width:640px){
+  .cal-cell{min-height:58px;padding:4px 3px;}
+  .day-num{width:20px;height:20px;font-size:11px;}
+  .slot-chip{font-size:9px;}
+  .booking-main,.process-main,.faq-main{padding:1rem 1rem 3rem;}
+  .header-inner{padding:2rem 1rem 1.5rem;}
+  .home-main{padding:2rem 1rem 4rem;}
+  .back-bar{padding:1rem 1rem .5rem;}
+  .price-cards{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-badge">중위권 전문 입시 컨설팅</div>
+    <h1>입시부장관</h1>
+    <div class="header-rule" style="width:40px;height:2px;background:var(--accent-light);margin:1rem 0;"></div>
+    <p class="header-desc">3~7등급 중위권 학생의 가능성을 현실로 만드는 맞춤형 입시 컨설팅.</p>
+    <p class="header-sub">1회 상담 1시간 30분 · 온라인 또는 방문</p>
+  </div>
+</header>
+
+
+
+<!-- ════════════ HOME SCREEN ════════════ -->
+<div id="screen-home">
+  <div class="home-main">
+    <div class="home-intro">
+      <p>안녕하세요.<br>중위권 학생에게 최적화된 입시 전략을 제공하는 입시부장관입니다.<br>아래 메뉴에서 원하시는 항목을 선택해 주세요.</p>
+    </div>
+    <div class="home-btns">
+      <button class="home-btn" onclick="showScreen('process')">
+        <div class="home-btn-icon">📋</div>
+        <div class="home-btn-text">
+          <h3>컨설팅 진행 절차</h3>
+          <p>예약부터 컨설팅 보고서 발송까지 전 과정 안내</p>
+        </div>
+      </button>
+      <button class="home-btn" onclick="showScreen('faq')">
+        <div class="home-btn-icon">💬</div>
+        <div class="home-btn-text">
+          <h3>자주 하는 질문</h3>
+          <p>컨설팅 비용, 방식, 대상 학년 등 Q&A</p>
+        </div>
+      </button>
+      <button class="home-btn primary" onclick="showScreen('booking')">
+        <div class="home-btn-icon">📅</div>
+        <div class="home-btn-text">
+          <h3>예약하기</h3>
+          <p>원하는 날짜와 시간대를 선택해 예약 신청</p>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ PROCESS SCREEN ════════════ -->
+<div id="screen-process">
+  <div class="back-bar"><button class="btn-back" onclick="showScreen('home')">← 메인으로</button></div>
+  <div class="process-main">
+    <div class="process-title">컨설팅 진행 절차</div>
+    <p class="process-sub">예약 신청부터 입시분석보고서 발송까지, 전 과정을 안내해 드립니다.<br>컨설팅은 온·오프라인 모두 가능하며, 등급별 전담 선생님이 달라 예약율이 다릅니다.</p>
+    <div class="step-list">
+
+      <div class="step-item">
+        <div class="step-line"><div class="step-dot">1</div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-tag">Step 1</div>
+          <h3>예약 신청 및 결제</h3>
+          <p>예약하기 페이지에서 원하는 날짜와 시간대를 선택 후 정보를 입력해 예약 신청을 합니다. 아래 계좌로 상담료를 입금하시면 최종 예약이 완료됩니다.</p>
+          <div class="price-cards">
+            <div class="price-card susi">
+              <div class="pc-label">수시 컨설팅</div>
+              <div class="pc-name">학생부 기반 전략</div>
+              <div class="pc-price">40만원</div>
+              <div class="pc-time">약 1시간 30분</div>
+            </div>
+            <div class="price-card jeongsi">
+              <div class="pc-label">정시 컨설팅</div>
+              <div class="pc-name">수능 성적 기반 전략</div>
+              <div class="pc-price">35만원</div>
+              <div class="pc-time">약 1시간</div>
+            </div>
+          </div>
+          <div class="step-note" style="margin-top:.8rem;">💳 카카오뱅크 3333-05-0644403 · 최다힘(입시부장관)</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-line"><div class="step-dot">2</div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-tag">Step 2</div>
+          <h3>필수 설문지 이메일 발송</h3>
+          <p>예약 확정 후, <strong>컨설팅 3일 전까지</strong> 아래 항목을 정리해 이메일로 보내주세요. 자료가 상세할수록 더 정밀한 분석이 가능합니다.</p>
+          <div class="survey-tabs">
+            <button class="survey-tab active" onclick="switchSurvey('susi',this)">수시</button>
+            <button class="survey-tab" onclick="switchSurvey('jeongsi',this)">정시</button>
+          </div>
+          <div class="survey-panel active" id="survey-susi">
+            <ol>
+              <li>생활기록부</li>
+              <li>최근 모의고사 성적표</li>
+              <li>희망 대학 및 학과 리스트
+                <ul>
+                  <li>최저 라인 (여기 밑은 재수하겠다.)</li>
+                  <li>조기취업형계약학과 희망 여부</li>
+                </ul>
+              </li>
+              <li>거주 지역</li>
+              <li>학과 vs 학교 (둘 중 무엇이 더 중요한가)</li>
+              <li>학생이름, 입금자명, 컨설팅 일자</li>
+              <li>하고 싶은 모든 질문<br><span style="font-size:12px;color:var(--ink-faint);">(질문이 추가로 생각나시면 계속 추가해서 보내주셔도 됩니다. 단, 기존 1~6번 포함해서 다시 보내주세요.)</span></li>
+            </ol>
+            <div class="survey-note">📧 <a href="mailto:just.him.it@gmail.com" style="color:var(--accent-light);">just.him.it@gmail.com</a> 으로 컨설팅 3일 전까지 보내주시면 감사하겠습니다!</div>
+          </div>
+          <div class="survey-panel" id="survey-jeongsi">
+            <ol>
+              <li>수능 성적표 사진</li>
+              <li>희망 대학 및 학과 리스트
+                <ul>
+                  <li>최저 라인 (여기 밑은 재수하겠다.)</li>
+                  <li>조기취업형계약학과 희망 여부 (희망 시 수시 생기부 첨부)</li>
+                </ul>
+              </li>
+              <li>거주 지역</li>
+              <li>학과 vs 학교 (둘 중 무엇이 더 중요한가)</li>
+              <li>학생이름, 입금자명, 컨설팅 일자</li>
+              <li>하고 싶은 모든 질문<br><span style="font-size:12px;color:var(--ink-faint);">(질문이 추가로 생각나시면 계속 추가해서 보내주셔도 됩니다. 단, 기존 1~5번 포함해서 다시 보내주세요.)</span></li>
+            </ol>
+            <div class="survey-note">📧 <a href="mailto:just.him.it@gmail.com" style="color:var(--accent-light);">just.him.it@gmail.com</a> 으로 컨설팅 3일 전까지 보내주시면 감사하겠습니다!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-line"><div class="step-dot">3</div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-tag">Step 3</div>
+          <h3>데이터 분석</h3>
+          <p>제출해 주신 자료를 바탕으로 학생의 강점·약점을 분석하고, 수시/정시 지원 가능 대학 범위를 산출합니다. 입결 범위가 큰 중위권 학생에게 꼭 필요한 <strong>미달대학 리스트, 표준편차, 추가합격 분석</strong>을 통해 각 경쟁률 변화에 따른 다양한 시나리오를 준비합니다.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-line"><div class="step-dot">4</div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-tag">Step 4</div>
+          <h3>컨설팅 진행</h3>
+          <p>예약하신 날짜·시간에 온라인(화상) 또는 방문 방식으로 컨설팅을 진행합니다. 분석 결과를 공유하고, 지원 전략·학생부 관리 방향 등 궁금하신 모든 내용을 상담합니다. 수시는 약 1시간 30분, 정시는 약 1시간 진행됩니다.</p>
+          <div class="step-note">🖥 온라인: Google Meet &nbsp;|&nbsp; 📍 방문: 서울 금천구 범안로 1126 대륭21차 (상세 주소는 예약 확정 후 안내)</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-line"><div class="step-dot">5</div><div class="step-connector"></div></div>
+        <div class="step-body">
+          <div class="step-tag">Step 5</div>
+          <h3>입시분석보고서 발송</h3>
+          <p>컨설팅 종료 후 <strong>5일 안으로</strong> 컨설팅 내용을 정리한 <strong>입시분석보고서</strong>를 이메일로 발송해 드립니다. 보고서에는 추천 지원 대학·학과, 다양한 시나리오, 향후 학습 방향 제언이 담겨 있습니다. 이후 추가로 궁금하신 점은 카카오톡으로 남겨주시면 24시간 내로 최대한 답변 드리겠습니다.</p>
+          <div class="step-note">📬 보고서는 제출하신 이메일 주소로 발송됩니다.</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:2.5rem;text-align:center;">
+      <button class="btn-book" style="max-width:320px;" onclick="showScreen('booking')">지금 예약하러 가기 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ FAQ SCREEN ════════════ -->
+<div id="screen-faq">
+  <div class="back-bar"><button class="btn-back" onclick="showScreen('home')">← 메인으로</button></div>
+  <div class="faq-main">
+    <div class="faq-title">자주 하는 질문</div>
+    <p class="faq-sub">궁금하신 점을 클릭하시면 답변을 확인하실 수 있습니다.</p>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">성적이 낮아도 가능한가요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">네 가능합니다. 입시부장관의 중위권 전문 입시 컨설팅은 3~7등급까지 다양한 진로와 성적의 학생만을 위한 컨설팅 서비스를 제공하고 있습니다. 성적이 낮더라도 편하게 문의 주시면 친절한 상담 도와드리겠습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">상담료는 얼마이며, 환불은 가능한가요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">수시 컨설팅은 1회 40만원(약 1시간 30분), 정시 컨설팅은 1회 35만원(약 1시간)입니다. 상담 3일 전까지 취소 시 전액 환불, 2일 전 취소 시 50% 환불, 1일 전 및 당일 취소는 환불이 어렵습니다. 변경·취소는 카카오톡 채널로 문의해 주세요.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">온라인 상담과 방문 상담 중 어느 것이 더 좋은가요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">두 방식 모두 컨설팅의 퀄리티는 완전히 동일합니다. 지방에 거주하시거나 방문이 어려우신 분들을 위해 온라인 상담을 마련하고 있으며, 화상회의는 Google Meet으로 진행됩니다. 방문 상담의 경우 서울 금천구 범안로 1126 대륭21차이며, 상세 주소는 예약 확정 후 안내드립니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">파이널콜이 있나요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">별도의 파이널콜은 없지만, 컨설팅 이후 궁금하신 점은 카카오톡으로 문의 주시면 24시간 안쪽으로 답변 드리고 있습니다. 답변이 늦어질 경우 한 번 더 카카오톡으로 보내주시면 꼭 답변 드리겠습니다. 또한 컨설팅 종료 후 입시분석보고서까지 제공해 드리기 때문에 1회 상담으로도 충분히 활용하실 수 있습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">상담 대상 학년이 어떻게 되나요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">고등학교 1학년부터 N수생까지 모두 상담 가능합니다. 학년과 상황에 따라 수시 중심 또는 정시 중심 전략을 달리 구성해 드리며, 현재 등급별 전담 선생님이 달라 예약율이 다를 수 있습니다.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">상담 전에 준비해야 할 것이 있나요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">예약 확정 후 컨설팅 3일 전까지 아래 필수 설문지를 이메일(just.him.it@gmail.com)로 보내주시면 됩니다.<br><br>
+        <strong>📌 수시 컨설팅</strong><br>
+        ① 생활기록부 &nbsp;② 최근 모의고사 성적표 &nbsp;③ 희망 대학·학과 리스트(최저 라인, 조기취업형계약학과 희망 여부) &nbsp;④ 거주 지역 &nbsp;⑤ 학과 vs 학교 중요도 &nbsp;⑥ 학생이름·입금자명·컨설팅 일자 &nbsp;⑦ 하고 싶은 모든 질문<br><br>
+        <strong>📌 정시 컨설팅</strong><br>
+        ① 수능 성적표 사진 &nbsp;② 희망 대학·학과 리스트(최저 라인, 조기취업형계약학과 희망 여부) &nbsp;③ 거주 지역 &nbsp;④ 학과 vs 학교 중요도 &nbsp;⑤ 학생이름·입금자명·컨설팅 일자 &nbsp;⑥ 하고 싶은 모든 질문
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">어떤 분석을 제공하나요?</span><span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">입결 범위가 큰 중위권 학생에게 꼭 필요한 미달대학 리스트, 표준편차, 추가합격 분석을 통해 각 경쟁률 변화에 따른 다양한 시나리오를 제공해 드립니다. 단순한 지원 추천이 아닌, 데이터 기반의 실질적인 전략을 드리는 것이 저희의 강점입니다.</div>
+    </div>
+
+    <div style="margin-top:2.5rem;text-align:center;">
+      <button class="btn-book" style="max-width:320px;" onclick="showScreen('booking')">예약하러 가기 →</button>
+    </div>
+  </div>
+</div>
+<div id="screen-booking">
+
+  <div class="booking-main">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:10px;">
+      <button class="btn-back" onclick="showScreen('home')">← 메인으로</button>
+      <button class="btn-admin" onclick="toggleAdmin()">🔒 관리자 모드</button>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div class="admin-panel" id="adminPanel">
+      <h2>⚙ 관리자 패널</h2>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('slots',this)">시간대 관리</button>
+        <button class="admin-tab" onclick="switchAdminTab('fake',this)">가계약 관리</button>
+      </div>
+
+      <!-- TAB: 시간대 관리 -->
+      <div class="admin-section active" id="admin-tab-slots">
+        <div class="admin-grid">
+          <div class="admin-field"><label>날짜 선택</label><input type="date" id="adminDate"></div>
+          <div class="admin-field">
+            <label>시작 시간 (2시간 블록)</label>
+            <select id="adminTime">
+              <option value="08:00">08:00 – 10:00</option>
+              <option value="08:30">08:30 – 10:30</option>
+              <option value="09:00">09:00 – 11:00</option>
+              <option value="09:30">09:30 – 11:30</option>
+              <option value="10:00">10:00 – 12:00</option>
+              <option value="10:30">10:30 – 12:30</option>
+              <option value="11:00">11:00 – 13:00</option>
+              <option value="11:30">11:30 – 13:30</option>
+              <option value="12:00">12:00 – 14:00</option>
+              <option value="12:30">12:30 – 14:30</option>
+              <option value="13:00">13:00 – 15:00</option>
+              <option value="13:30">13:30 – 15:30</option>
+              <option value="14:00">14:00 – 16:00</option>
+              <option value="14:30">14:30 – 16:30</option>
+              <option value="15:00">15:00 – 17:00</option>
+              <option value="15:30">15:30 – 17:30</option>
+              <option value="16:00">16:00 – 18:00</option>
+              <option value="16:30">16:30 – 18:30</option>
+              <option value="17:00">17:00 – 19:00</option>
+              <option value="17:30">17:30 – 19:30</option>
+              <option value="18:00">18:00 – 20:00</option>
+              <option value="18:30">18:30 – 20:30</option>
+              <option value="19:00">19:00 – 21:00</option>
+              <option value="19:30">19:30 – 21:30</option>
+              <option value="20:00">20:00 – 22:00</option>
+              <option value="20:30">20:30 – 22:30</option>
+              <option value="21:00">21:00 – 23:00</option>
+              <option value="21:30">21:30 – 23:30</option>
+              <option value="22:00">22:00 – 00:00</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-add-slot" onclick="addSlot()">+ 시간대 오픈</button>
+        <div class="admin-slots-list">
+          <div onclick="toggleSlotList()" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:4px 0;">
+            <h3 style="margin-bottom:0;">오픈된 시간대 (실제 예약만 표시)</h3>
+            <span id="slotListArrow" style="color:rgba(255,255,255,.4);font-size:13px;transition:transform .25s;transform:rotate(180deg);">▼</span>
+          </div>
+          <div id="adminSlotList" style="display:block;margin-top:.6rem;"></div>
+        </div>
+      </div>
+
+      <!-- TAB: 가계약 관리 -->
+      <div class="admin-section" id="admin-tab-fake">
+        <p style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:1rem;line-height:1.6;">가계약은 일반 사용자 화면에서 예약 신청 상태로 표시됩니다. 관리자 캘린더에는 <strong style="color:rgba(255,220,100,.7);">가</strong> 뱃지로만 구분 표시됩니다.</p>
+        <div class="admin-grid">
+          <div class="admin-field"><label>날짜 선택</label><input type="date" id="fakeDate"></div>
+          <div class="admin-field">
+            <label>시간대 선택</label>
+            <select id="fakeTime">
+              <option value="08:00">08:00</option>
+              <option value="08:30">08:30</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+              <option value="18:00">18:00</option>
+              <option value="18:30">18:30</option>
+              <option value="19:00">19:00</option>
+              <option value="19:30">19:30</option>
+              <option value="20:00">20:00</option>
+              <option value="20:30">20:30</option>
+              <option value="21:00">21:00</option>
+              <option value="21:30">21:30</option>
+              <option value="22:00">22:00</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-add-slot" onclick="addFakeSlot()">+ 가계약 추가</button>
+        <div class="admin-slots-list">
+          <h3>등록된 가계약</h3>
+          <div id="fakeSlotList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH NAV -->
+    <div class="month-nav">
+      <button class="btn-nav" onclick="changeMonth(-1)">&#8592;</button>
+      <div class="month-title" id="monthTitle"></div>
+      <button class="btn-nav" onclick="changeMonth(1)">&#8594;</button>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot available"></div>예약 가능</div>
+      <div class="legend-item"><div class="legend-dot booked"></div>예약 완료</div>
+      <div class="legend-item" id="legend-fake" style="display:none;">
+        <div style="width:10px;height:10px;border-radius:2px;background:rgba(255,200,60,.3);border:1px solid rgba(255,200,60,.5);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#fcd34d;">가</div>
+        가계약
+      </div>
+    </div>
+
+    <div class="calendar-wrap">
+      <div class="cal-weekdays">
+        <div class="cal-weekday">일</div><div class="cal-weekday">월</div>
+        <div class="cal-weekday">화</div><div class="cal-weekday">수</div>
+        <div class="cal-weekday">목</div><div class="cal-weekday">금</div>
+        <div class="cal-weekday">토</div>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <div id="bookingsList"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal"><button class="modal-close" onclick="closeModal()">×</button><div id="modalContent"></div></div>
+</div>
+
+<footer class="site-footer">입시부장관 · 중위권 전문 입시연구소 · © 2025</footer>
+
+<script>
+// ── 화면 전환 ──────────────────────────────────────────────────────────────
+function showScreen(name) {
+  ['home','process','faq','booking'].forEach(s => {
+    document.getElementById('screen-'+s).style.display = (s===name) ? 'block' : 'none';
+  });
+  window.scrollTo(0,0);
+  if (name === 'booking') renderBookingsList();
+}
+
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
+}
+
+function switchAdminTab(name, btn) {
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('admin-tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='fake') renderFakeSlots();
+}
+
+function toggleSlotList(){
+  const el=document.getElementById('adminSlotList');
+  const arrow=document.getElementById('slotListArrow');
+  if(!el)return;
+  const isHidden=el.style.display==='none';
+  el.style.display=isHidden?'block':'none';
+  if(arrow) arrow.style.transform=isHidden?'rotate(180deg)':'rotate(0deg)';
+}
+function switchSurvey(name, btn) {
+  document.querySelectorAll('.survey-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.survey-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('survey-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── 시간 헬퍼 ──────────────────────────────────────────────────────────────
+const CONSULT_MINUTES = 90;
+const BLOCK_HOURS = 2;
+
+function timeToMins(t) {
+  const [h, m] = t.split(':').map(Number);
+  return h * 60 + (m || 0);
+}
+function minsToTime(mins) {
+  const h = Math.floor(mins / 60) % 24;
+  const m = mins % 60;
+  return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+}
+function slotEndTime(t)     { return minsToTime(timeToMins(t) + BLOCK_HOURS * 60); }
+function slotConsultEnd(t)  { return minsToTime(timeToMins(t) + CONSULT_MINUTES); }
+function formatDate(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function today() { return formatDate(new Date()); }
+function maskName(n) { return n ? '*'.repeat(n.length) : ''; }
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let currentYear, currentMonth, adminVisible=false, selectedSlot=null;
+let notifPermission = (typeof Notification!=='undefined') ? Notification.permission : 'denied';
+let openSlots=[], bookings=[], fakeSlots=[];
+
+// ── Firebase ───────────────────────────────────────────────────────────────
+const FB_CONFIG = {
+  apiKey:"AIzaSyBXe7Yw6tyRVOGYkIrjTmlW1BO3V-9nBX8",
+  authDomain:"ipsi-calendar.firebaseapp.com",
+  databaseURL:"https://ipsi-calendar-default-rtdb.firebaseio.com",
+  projectId:"ipsi-calendar",
+  storageBucket:"ipsi-calendar.firebasestorage.app",
+  messagingSenderId:"428617495394",
+  appId:"1:428617495394:web:6b38edb7ee3003da26f23b"
+};
+let db=null, fbReady=false;
+
+function safeKey(s){ return s.replace(/[.#$\/\[\]]/g,'_'); }
+
+function loadFirebase(cb){
+  if(window.firebase){initDB(cb);return;}
+  const s1=document.createElement('script');
+  s1.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
+  s1.onload=()=>{
+    const s2=document.createElement('script');
+    s2.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js';
+    s2.onload=()=>initDB(cb);
+    s2.onerror=()=>cb(false);
+    document.head.appendChild(s2);
+  };
+  s1.onerror=()=>cb(false);
+  document.head.appendChild(s1);
+}
+function initDB(cb){
+  try{
+    if(!firebase.apps.length) firebase.initializeApp(FB_CONFIG);
+    db=firebase.database(); fbReady=true; cb(true);
+  }catch(e){cb(false);}
+}
+
+function saveSlots(){
+  if(!fbReady)return;
+  const obj={};
+  openSlots.forEach(s=>{ obj[safeKey(s.date+'_'+s.time)]={date:s.date,time:s.time}; });
+  db.ref('openSlots').set(obj).catch(()=>{});
+}
+function saveBooking(b){
+  if(!fbReady)return;
+  db.ref('bookings/'+safeKey(b.date+'_'+b.time)).set(b).catch(()=>{});
+}
+function deleteBooking(date,time){
+  if(!fbReady)return;
+  db.ref('bookings/'+safeKey(date+'_'+time)).remove().catch(()=>{});
+}
+function saveFakeSlots(){
+  if(!fbReady)return;
+  const obj={};
+  fakeSlots.forEach(s=>{ obj[safeKey(s.date+'_'+s.time)]={date:s.date,time:s.time}; });
+  db.ref('fakeSlots').set(obj).catch(()=>{});
+}
+
+function attachListeners(){
+  db.ref('openSlots').on('value',snap=>{
+    const v=snap.val();
+    openSlots=v?Object.values(v).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)):[];
+    renderCalendar(); renderAdminSlots(); renderBookingsList();
+    ensureSlotListVisible();
+  });
+  db.ref('bookings').on('value',snap=>{
+    const v=snap.val();
+    bookings=v?Object.values(v):[];
+    renderCalendar(); renderAdminSlots(); renderBookingsList();
+    ensureSlotListVisible();
+  });
+  db.ref('fakeSlots').on('value',snap=>{
+    const v=snap.val();
+    fakeSlots=v?Object.values(v):[];
+    renderCalendar(); renderAdminSlots(); renderFakeSlots(); renderBookingsList();
+    ensureSlotListVisible();
+  });
+}
+
+function ensureSlotListVisible(){
+  // 관리자 패널이 열려 있으면 슬롯 목록도 항상 펼쳐진 상태 유지
+  if(!adminVisible) return;
+  const el=document.getElementById('adminSlotList');
+  const arrow=document.getElementById('slotListArrow');
+  if(el) el.style.display='block';
+  if(arrow) arrow.style.transform='rotate(180deg)';
+}
+
+function showLoading(on){
+  let el=document.getElementById('fb-loading');
+  if(!el){
+    el=document.createElement('div'); el.id='fb-loading';
+    el.style.cssText='text-align:center;padding:2rem;font-size:13px;color:var(--ink-muted);';
+    el.textContent='데이터를 불러오는 중…';
+    const g=document.getElementById('calGrid');
+    if(g&&g.parentNode) g.parentNode.insertBefore(el,g);
+  }
+  el.style.display=on?'block':'none';
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+window.onload=function(){
+  const now=new Date();
+  currentYear=now.getFullYear(); currentMonth=now.getMonth();
+  renderCalendar();
+  document.getElementById('adminDate').value=today();
+  document.getElementById('fakeDate').value=today();
+  if(typeof Notification!=='undefined'&&notifPermission==='default'){
+    document.getElementById('notifBanner').classList.add('show');
+  }
+  showLoading(true);
+  loadFirebase(ok=>{
+    showLoading(false);
+    if(ok){ attachListeners(); }
+    else{
+      renderCalendar(); renderAdminSlots(); renderBookingsList();
+      document.getElementById('calGrid').insertAdjacentHTML('beforebegin',
+        '<p style="color:#c44a10;font-size:13px;padding:1rem 0;">⚠ 서버 연결에 실패했습니다.</p>');
+    }
+  });
+};
+
+// ── 알림 ───────────────────────────────────────────────────────────────────
+function requestNotifPermission(){
+  if(typeof Notification==='undefined'){dismissNotifBanner();return;}
+  try{
+    const r=Notification.requestPermission();
+    if(r&&typeof r.then==='function'){
+      r.then(res=>{ notifPermission=res; dismissNotifBanner(); if(res==='granted')_testNotif(); }).catch(()=>dismissNotifBanner());
+    }else dismissNotifBanner();
+  }catch(e){dismissNotifBanner();}
+}
+function _testNotif(){try{new Notification('입시부장관',{body:'알림이 활성화되었습니다.'});}catch(e){}}
+function dismissNotifBanner(){ document.getElementById('notifBanner').classList.remove('show'); }
+function sendNotification(title,body){
+  if(typeof Notification==='undefined'||notifPermission!=='granted')return;
+  try{new Notification(title,{body});}catch(e){}
+}
+
+// ── ADMIN ──────────────────────────────────────────────────────────────────
+function toggleAdmin(){
+  const pw=prompt('관리자 비밀번호:');
+  if(pw===null)return;
+  if(pw==='1407'){
+    adminVisible=!adminVisible;
+    document.getElementById('adminPanel').classList.toggle('visible',adminVisible);
+    const legendFake=document.getElementById('legend-fake');
+    if(legendFake) legendFake.style.display=adminVisible?'flex':'none';
+    renderCalendar(); // 가계약 뱃지 표시/숨김 반영
+  }
+  else alert('비밀번호가 올바르지 않습니다.');
+}
+
+function addSlot(){
+  const date=document.getElementById('adminDate').value;
+  const time=document.getElementById('adminTime').value;
+  if(!date){alert('날짜를 선택해 주세요.');return;}
+  if(openSlots.find(s=>s.date===date&&s.time===time)){alert('이미 등록된 시간대입니다.');return;}
+  openSlots.push({date,time});
+  openSlots.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  saveSlots();
+  renderCalendar(); renderAdminSlots(); renderBookingsList();
+}
+
+function removeSlot(date,time){
+  if(!confirm(`${date} ${time} 슬롯을 삭제할까요?`))return;
+  openSlots=openSlots.filter(s=>!(s.date===date&&s.time===time));
+  bookings=bookings.filter(b=>!(b.date===date&&b.time===time));
+  saveSlots(); deleteBooking(date,time);
+  renderCalendar(); renderAdminSlots(); renderBookingsList();
+}
+
+function addFakeSlot(){
+  const date=document.getElementById('fakeDate').value;
+  const time=document.getElementById('fakeTime').value;
+  if(!date){alert('날짜를 선택해 주세요.');return;}
+  if(!openSlots.find(s=>s.date===date&&s.time===time)){
+    if(!confirm('해당 날짜·시간이 오픈된 슬롯에 없습니다. 그래도 추가할까요?\n(일반 사용자 화면에서만 예약 신청 상태로 표시됩니다.)'))return;
+  }
+  if(fakeSlots.find(s=>s.date===date&&s.time===time)){alert('이미 등록된 가계약입니다.');return;}
+  if(bookings.find(b=>b.date===date&&b.time===time)){alert('이미 실제 예약이 있는 시간대입니다.');return;}
+  fakeSlots.push({date,time});
+  fakeSlots.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  saveFakeSlots();
+  renderCalendar(); renderAdminSlots(); renderFakeSlots(); renderBookingsList();
+}
+
+function removeFakeSlot(date,time){
+  fakeSlots=fakeSlots.filter(s=>!(s.date===date&&s.time===time));
+  saveFakeSlots();
+  renderCalendar(); renderAdminSlots(); renderFakeSlots(); renderBookingsList();
+}
+
+function renderAdminSlots(){
+  const el=document.getElementById('adminSlotList');
+  if(!el)return;
+  const realSlots=openSlots.filter(s=>!fakeSlots.find(f=>f.date===s.date&&f.time===s.time));
+  if(!realSlots.length){
+    el.innerHTML='<p style="font-size:12px;color:rgba(255,255,255,.3);padding:4px 0;">오픈된 시간대가 없습니다.</p>';
+    return;
+  }
+  const dowNames=['일','월','화','수','목','금','토'];
+  el.innerHTML=realSlots.map(s=>{
+    const b=bookings.find(x=>x.date===s.date&&x.time===s.time);
+    const consultEnd=slotConsultEnd(s.time);
+    const [y,m,d]=s.date.split('-');
+    const dow=dowNames[new Date(s.date).getDay()];
+    const confirmed=b&&b.confirmed;
+
+    // 예약 없는 슬롯
+    if(!b){
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+        <div>
+          <span style="font-size:13px;color:rgba(255,255,255,.85);">${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow}) &nbsp; ${s.time} – ${consultEnd}</span>
+          <span style="margin-left:10px;font-size:11px;color:rgba(255,255,255,.3);">예약 없음</span>
+        </div>
+        <button class="btn-remove" onclick="removeSlot('${s.date}','${s.time}')">×</button>
+      </div>`;
+    }
+
+    // 예약 있는 슬롯 — 카드 형태로 상세 표시
+    const methodLabel = !b.method ? '미선택'
+      : b.method==='online' ? '온라인 (Google Meet)' : '오프라인 (서울 금천구)';
+    const bName    = b.name    || '(이름 없음)';
+    const bGrade   = b.grade   || '-';
+    const bPhone   = b.phone   || '-';
+    const bSubject = b.subject || '';
+    const statusBadge=confirmed
+      ?`<span style="display:inline-block;background:#065f46;color:#6ee7a0;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.03em;">✓ 예약 완료</span>`
+      :`<span style="display:inline-block;background:#78350f;color:#fcd34d;font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.03em;">● 예약 신청</span>`;
+
+    return `<div style="border:1px solid ${confirmed?'rgba(110,231,160,.25)':'rgba(252,211,77,.25)'};border-radius:8px;padding:14px;margin-bottom:10px;background:rgba(255,255,255,.04);">
+      <!-- 헤더 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          ${statusBadge}
+          <span style="font-size:13px;color:rgba(255,255,255,.85);font-weight:600;">${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow}) &nbsp; ${s.time} – ${consultEnd}</span>
+        </div>
+        <button class="btn-remove" onclick="removeSlot('${s.date}','${s.time}')">×</button>
+      </div>
+      <!-- 신청 내역 -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px 16px;font-size:12.5px;margin-bottom:12px;">
+        <div><span style="color:rgba(255,255,255,.4);">👤 이름</span>&nbsp;<span style="color:#fff;font-weight:600;">${bName}</span></div>
+        <div><span style="color:rgba(255,255,255,.4);">🎓 학년</span>&nbsp;<span style="color:#fff;">${bGrade}</span></div>
+        <div><span style="color:rgba(255,255,255,.4);">📞 연락처</span>&nbsp;<span style="color:#fff;">${bPhone}</span></div>
+        <div><span style="color:rgba(255,255,255,.4);">🖥 방식</span>&nbsp;<span style="color:#fff;">${methodLabel}</span></div>
+      </div>
+      ${bSubject?`<div style="background:rgba(0,0,0,.2);border-radius:6px;padding:8px 12px;font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:12px;"><span style="color:rgba(255,255,255,.35);">💬 상담 희망 내용</span><br>${bSubject.replace(/\n/g,'<br>')}</div>`:''}
+      <!-- 액션 버튼 -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        ${!confirmed?`<button onclick="confirmBooking('${s.date}','${s.time}')" style="flex:1;min-width:120px;background:#c44a10;color:#fff;border:none;border-radius:6px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.02em;">✓ 예약 확정</button>`:'<span style="font-size:12px;color:#6ee7a0;padding:4px 0;">✓ 이미 확정된 예약입니다</span>'}
+        <button onclick="openAdminDetail('${s.date}','${s.time}')" style="flex:1;min-width:80px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:10px 14px;font-size:13px;cursor:pointer;font-family:inherit;">상세 보기</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderFakeSlots(){
+  const el=document.getElementById('fakeSlotList');
+  if(!el)return;
+  if(!fakeSlots.length){
+    el.innerHTML='<p style="font-size:12px;color:rgba(255,255,255,.3);padding:4px 0;">등록된 가계약이 없습니다.</p>';
+    return;
+  }
+  const months=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const dowNames=['일','월','화','수','목','금','토'];
+  el.innerHTML=fakeSlots.map(s=>{
+    const [y,m,d]=s.date.split('-');
+    const dow=dowNames[new Date(s.date).getDay()];
+    const consultEnd=slotConsultEnd(s.time);
+    return `<div class="admin-slot-item" style="flex-wrap:wrap;gap:4px;align-items:center;">
+      <div style="flex:1;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:rgba(255,200,60,.2);border:1px solid rgba(255,200,60,.5);border-radius:3px;font-size:11px;font-weight:700;color:#fcd34d;flex-shrink:0;">가</span>
+        <span style="font-size:13px;">${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow})</span>
+        <span style="color:rgba(255,255,255,.5);font-size:12px;">${s.time} – ${consultEnd}</span>
+      </div>
+      <button class="btn-remove" onclick="removeFakeSlot('${s.date}','${s.time}')">×</button>
+    </div>`;
+  }).join('');
+}
+
+function confirmBooking(date,time){
+  const idx=bookings.findIndex(b=>b.date===date&&b.time===time);
+  if(idx===-1)return;
+  bookings[idx].confirmed=true;
+  if(fbReady) db.ref('bookings/'+safeKey(date+'_'+time)+'/confirmed').set(true).catch(()=>{});
+  renderAdminSlots(); renderBookingsList(); renderCalendar();
+}
+
+function openAdminDetail(date,time){
+  const b=bookings.find(x=>x.date===date&&x.time===time);
+  if(!b)return;
+  const [y,m,d]=date.split('-');
+  const dow=['일','월','화','수','목','금','토'][new Date(date).getDay()];
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-tag" style="color:var(--gold);">관리자 — 예약 상세</div>
+    <h2 style="font-size:1.1rem;">${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow})</h2>
+    <div class="modal-time">⏱ ${time} – ${slotConsultEnd(time)}</div>
+    <div class="success-detail" style="margin-top:0;">
+      <strong>👤 이름</strong> &nbsp;${b.name}<br>
+      <strong>📞 연락처</strong> &nbsp;${b.phone}<br>
+      <strong>🎓 학년</strong> &nbsp;${b.grade}<br>
+      <strong>🖥 방식</strong> &nbsp;${b.method==='online'?'온라인 (Google Meet)':'오프라인 (서울 금천구 방문)'}<br>
+      <strong>💬 상담 희망 내용</strong><br>
+      <div style="margin-top:6px;padding:10px 12px;background:rgba(0,0,0,.04);border-radius:6px;line-height:1.7;font-size:13.5px;">
+        ${b.subject?b.subject.replace(/\n/g,'<br>'):'<span style="color:var(--ink-faint);">내용 없음</span>'}
+      </div>
+    </div>
+    <button class="btn-book" style="margin-top:1.2rem;background:var(--ink);" onclick="closeModal()">닫기</button>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+// ── CALENDAR ───────────────────────────────────────────────────────────────
+function changeMonth(dir){
+  currentMonth+=dir;
+  if(currentMonth<0){currentMonth=11;currentYear--;}
+  if(currentMonth>11){currentMonth=0;currentYear++;}
+  renderCalendar();
+  renderBookingsList();
+}
+
+function renderCalendar(){
+  const months=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const el=document.getElementById('monthTitle');
+  if(el) el.textContent=`${currentYear}년 ${months[currentMonth]}`;
+  const grid=document.getElementById('calGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  const firstDay=new Date(currentYear,currentMonth,1).getDay();
+  const daysInMonth=new Date(currentYear,currentMonth+1,0).getDate();
+  const todayStr=today();
+
+  for(let i=0;i<firstDay;i++){
+    const c=document.createElement('div'); c.className='cal-cell empty'; grid.appendChild(c);
+  }
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow=new Date(currentYear,currentMonth,d).getDay();
+    const isPast=dateStr<todayStr, isToday=dateStr===todayStr;
+    const cell=document.createElement('div');
+    let cls='cal-cell';
+    if(isPast)cls+=' past'; if(isToday)cls+=' today';
+    if(dow===0)cls+=' sunday'; if(dow===6)cls+=' saturday';
+    cell.className=cls;
+
+    const slotsForDay=openSlots.filter(s=>s.date===dateStr).sort((a,b)=>a.time.localeCompare(b.time));
+    let chips='';
+    if(!isPast&&slotsForDay.length){
+      chips='<div class="slot-chips">';
+      slotsForDay.forEach(s=>{
+        const realBooked=bookings.find(b=>b.date===s.date&&b.time===s.time);
+        const fakeBooked=fakeSlots.find(f=>f.date===s.date&&f.time===s.time);
+        if(realBooked){
+          // 실제 예약: 취소선
+          chips+=`<div class="slot-chip booked">${s.time}</div>`;
+        } else if(fakeBooked){
+          // 가계약: 관리자 모드일 때는 '가' 뱃지, 일반 사용자에겐 취소선
+          if(adminVisible){
+            chips+=`<div class="slot-chip" style="background:rgba(255,200,60,.15);border:1px solid rgba(255,200,60,.4);color:#fcd34d;cursor:default;pointer-events:none;display:flex;align-items:center;justify-content:center;gap:3px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;background:rgba(255,200,60,.3);border-radius:2px;font-size:9px;font-weight:700;">가</span>${s.time}</div>`;
+          } else {
+            chips+=`<div class="slot-chip booked">${s.time}</div>`;
+          }
+        } else {
+          chips+=`<div class="slot-chip available" onclick="openBooking('${s.date}','${s.time}')">${s.time}</div>`;
+        }
+      });
+      chips+='</div>';
+    }
+    cell.innerHTML=`<div class="day-num">${d}</div>`+chips;
+    grid.appendChild(cell);
+  }
+}
+
+// ── BOOKING MODAL ──────────────────────────────────────────────────────────
+function openBooking(date,time){
+  selectedSlot={date,time};
+  const consultEnd=slotConsultEnd(time);
+  const [y,m,d]=date.split('-');
+  const dow=['일','월','화','수','목','금','토'][new Date(date).getDay()];
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-tag">상담 예약 신청</div>
+    <h2>${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow})</h2>
+    <div class="modal-time">⏱ <strong>${time} – ${consultEnd}</strong> &nbsp;(1시간 30분 상담)</div>
+    <div class="form-field"><label>학생 이름</label><input type="text" id="f_name" placeholder="예) 김민준"></div>
+    <div class="form-field"><label>연락처</label><input type="tel" id="f_phone" placeholder="010-0000-0000"></div>
+    <div class="form-field">
+      <label>학년</label>
+      <select id="f_grade">
+        <option value="">-- 선택 --</option>
+        <option>고1</option><option>고2</option>
+        <option>고3</option><option>재수생</option><option>N수생</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>상담 방식</label>
+      <select id="f_method">
+        <option value="">-- 선택 --</option>
+        <option value="online">온라인 (화상회의 · Google Meet)</option>
+        <option value="offline">오프라인 (서울 금천구 방문)</option>
+      </select>
+    </div>
+    <div class="form-field"><label>상담 희망 내용</label><textarea id="f_subject" placeholder="예) 수시/정시 전략, 학생부 관리, 목표 대학 설정 등 자유롭게 적어주세요."></textarea></div>
+    <p style="font-size:12.5px;color:var(--ink-muted);margin-top:1rem;line-height:1.6;">※ 예약은 결제 후 '예약 완료'됩니다.</p>
+    <button class="btn-book" onclick="submitBooking()">예약 신청</button>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function submitBooking(){
+  const name=document.getElementById('f_name').value.trim();
+  const phone=document.getElementById('f_phone').value.trim();
+  const grade=document.getElementById('f_grade').value;
+  const method=document.getElementById('f_method').value;
+  const subject=document.getElementById('f_subject').value.trim();
+  if(!name||!phone||!grade||!method){alert('이름, 연락처, 학년, 상담 방식은 필수입니다.');return;}
+  const nb={...selectedSlot,name,phone,grade,method,subject,confirmed:false};
+  bookings.push(nb);
+  saveBooking(nb);
+  const [y,m,d]=selectedSlot.date.split('-');
+  sendNotification('입시부장관 예약 신청',`${name}(${grade}) · ${parseInt(m)}월${parseInt(d)}일 ${selectedSlot.time}`);
+  showSuccess(name,grade,method,selectedSlot.date,selectedSlot.time);
+}
+
+function showSuccess(name,grade,method,date,time){
+  const consultEnd=slotConsultEnd(time);
+  const [y,m,d]=date.split('-');
+  const dow=['일','월','화','수','목','금','토'][new Date(date).getDay()];
+  const methodLabel=method==='online'
+    ? '온라인 (Google Meet)'
+    : '오프라인 (서울 금천구 방문)';
+  document.getElementById('modalContent').innerHTML=`
+    <div class="success-view">
+      <div class="success-icon">✓</div>
+      <h3>예약 신청이 완료되었습니다!</h3>
+      <p>${name} 학생(학부모)님,<br>신청해 주셔서 감사합니다.</p>
+      <div class="success-detail">
+        <strong>📅 일시</strong> ${y}년 ${parseInt(m)}월 ${parseInt(d)}일 (${dow})<br>
+        <strong>⏱ 상담</strong> ${time} – ${consultEnd} (1시간 30분)<br>
+        <strong>👤 학년</strong> ${grade}<br>
+        <strong>🖥 방식</strong> ${methodLabel}
+      </div>
+      <div class="copy-box">
+        💳 아래 계좌로 입금해주시면 최종 예약 완료됩니다.
+        <div class="copy-row" style="margin-top:8px;">
+          <div>
+            <div class="copy-val">카카오뱅크 3333-05-0644403</div>
+            <div style="font-size:12px;color:#92400e;margin-top:2px;">예금주: 최다힘(입시부장관)</div>
+          </div>
+          <button class="btn-copy" onclick="copyText('카카오뱅크 3333-05-0644403','copy-main-btn')" id="copy-main-btn">복사</button>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-faint);">상담 전날 리마인드 안내를 드립니다.<br>변경/취소 문의는 카카오톡 채널로 주세요.</p>
+      <button class="btn-book" style="margin-top:1.5rem;" onclick="closeModal()">확인</button>
+    </div>`;
+}
+
+function copyText(text, btnId){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>flashCopied(btnId)).catch(()=>fallbackCopy(text,btnId));
+  } else { fallbackCopy(text,btnId); }
+}
+function fallbackCopy(text,btnId){
+  const ta=document.createElement('textarea');
+  ta.value=text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); flashCopied(btnId); }catch(e){}
+  document.body.removeChild(ta);
+}
+function flashCopied(btnId){
+  const btn=document.getElementById(btnId);
+  if(!btn)return;
+  const orig=btn.textContent;
+  btn.textContent='✓ 복사됨'; btn.classList.add('copied');
+  setTimeout(()=>{ btn.textContent=orig; btn.classList.remove('copied'); },2000);
+}
+
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); selectedSlot=null; }
+function closeModalOutside(e){ if(e.target===document.getElementById('modalOverlay'))closeModal(); }
+
+// ── BOOKINGS LIST (해당 월만) ────────────────────────────────────────────
+function renderBookingsList(){
+  const el=document.getElementById('bookingsList');
+  if(!el)return;
+  const monthStr=`${currentYear}-${String(currentMonth+1).padStart(2,'0')}`;
+  const todayStr=today();
+
+  // 현재 월 + 오늘 이후 슬롯만
+  const upcoming=openSlots
+    .filter(s=>s.date.startsWith(monthStr)&&s.date>=todayStr)
+    .map(s=>({...s, booking:bookings.find(b=>b.date===s.date&&b.time===s.time)}));
+
+  if(!upcoming.length){ el.innerHTML=''; return; }
+
+  const mNames=['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const dowFull=['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
+
+  const cards=upcoming.map(s=>{
+    const [y,m,d]=s.date.split('-');
+    const dow=dowFull[new Date(s.date).getDay()];
+    const consultEnd=slotConsultEnd(s.time);
+    const isBooked=!!s.booking;
+    const isConfirmed=isBooked&&s.booking.confirmed;
+    // 가계약은 예약 완료(초록)로 표시
+    const isFake=!isBooked&&fakeSlots.find(f=>f.date===s.date&&f.time===s.time);
+
+    let badge='';
+    if(isFake){
+      badge=`<div class="booking-status confirmed">예약 완료</div>`;
+    } else if(!isBooked){
+      badge=`<div class="booking-status" style="color:var(--accent-light);">⬤ 오픈</div>`;
+    } else if(isConfirmed){
+      badge=`<div class="booking-status confirmed">예약 완료</div>`;
+    } else {
+      badge=`<div class="booking-status pending">예약 신청</div>`;
+    }
+
+    return `<div class="booking-card">
+      <div class="booking-card-date">
+        <div class="bc-month">${mNames[parseInt(m)-1]}</div>
+        <div class="bc-day">${parseInt(d)}</div>
+      </div>
+      <div class="booking-card-info">
+        <div class="bc-name">${(isBooked||isFake) ? maskName(isBooked?s.booking.name:'홍길동')+(isBooked?' ('+s.booking.grade+')':' (고3)') : '예약 가능'}</div>
+        <div class="bc-time">${dow} &nbsp;${s.time} – ${consultEnd}</div>
+      </div>
+      ${badge}
+    </div>`;
+  }).join('');
+
+  el.innerHTML=`<div class="section-label" style="margin-top:2rem;">${currentYear}년 ${mNames[currentMonth]} 예약 현황</div>
+    <div class="booking-cards">${cards}</div>`;
+}
+</script>
+
+<script>
+// ── 카카오톡 인앱 외부 브라우저 유도 ────────────────────────────────────
+(function(){
+  try{
+    var ua=navigator.userAgent||'';
+    var isKakao=/KAKAOTALK/i.test(ua);
+    var isInApp=/NAVER|Instagram|FBAV|FB_IAB|Line/i.test(ua);
+    var isSamsung=/SamsungBrowser/i.test(ua);
+    var isEdge=/Edg\//i.test(ua), isOpera=/OPR\//i.test(ua);
+    var isRealChrome=/Chrome\//i.test(ua)&&!isEdge&&!isOpera&&!isSamsung&&!isKakao&&!isInApp;
+    var isAndroid=/Android/i.test(ua), isIOS=/iPhone|iPad|iPod/i.test(ua);
+    if(isRealChrome)return;
+    var pageURL=window.location.href;
+    var bar=document.createElement('div');
+    bar.style.cssText='display:block;width:100%;background:#1a1410;color:#fff;padding:12px 16px;box-sizing:border-box;font-family:sans-serif;font-size:13px;line-height:1.6;border-bottom:2px solid #c44a10;';
+    var label=isKakao?'카카오톡 인앱 브라우저입니다. 아래 버튼을 눌러 외부 브라우저에서 열어주세요.':'원활한 예약을 위해 Chrome 브라우저를 권장합니다.';
+    var btns='';
+    if(isKakao&&isAndroid) btns='<button onclick="kakaoOpen()" style="background:#c44a10;color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;margin-right:8px;cursor:pointer;">외부 브라우저로 열기</button>';
+    else if(isKakao&&isIOS) btns='<button onclick="kakaoOpen()" style="background:#c44a10;color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;margin-right:8px;cursor:pointer;">Safari로 열기</button>';
+    else if(isAndroid) btns='<button onclick="chromeOpenAndroid()" style="background:#c44a10;color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;margin-right:8px;cursor:pointer;">Chrome으로 열기</button>';
+    else if(isIOS) btns='<button onclick="chromeOpenIOS()" style="background:#c44a10;color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;margin-right:8px;cursor:pointer;">Chrome으로 열기</button>';
+    btns+='<button onclick="this.parentElement.parentElement.style.display=\'none\'" style="background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);padding:7px 12px;border-radius:6px;font-size:12px;cursor:pointer;">닫기</button>';
+    bar.innerHTML='<span style="color:rgba(255,255,255,.85);">'+label+'</span><br>'+btns;
+    document.body.insertBefore(bar,document.body.firstChild);
+    window.kakaoOpen=function(){
+      if(isAndroid){
+        location.href='intent://'+pageURL.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(pageURL)+';end';
+      }else{ alert('우측 하단 공유(□↑) 버튼 → "Safari로 열기"를 눌러주세요.'); }
+    };
+    window.chromeOpenAndroid=function(){
+      location.href='intent://'+pageURL.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent('https://play.google.com/store/apps/details?id=com.android.chrome')+';end';
+    };
+    window.chromeOpenIOS=function(){
+      location.href=pageURL.replace(/^https/,'googlechromes').replace(/^http(?!s)/,'googlechrome');
+      setTimeout(function(){ location.href='https://apps.apple.com/app/google-chrome/id535886823'; },2000);
+    };
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
